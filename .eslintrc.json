@@ -14,7 +14,7 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./server/tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "plugins": ["prettier", "import"],
   "rules": {
