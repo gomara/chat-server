@@ -8,7 +8,8 @@
     "dev": "nodemon -L index.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start-local-database": "docker-compose -f docker-compose.bdd.yml up -d"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +32,9 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.18.3",
+    "mongoose": "^8.2.1",
     "socket.io": "^4.7.4"
   },
   "husky": {
