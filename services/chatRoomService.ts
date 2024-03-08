@@ -2,7 +2,13 @@ import { ChatRoomModel } from '../models/ChatRoom';
 import { MessageModel } from '../models/Message';
 
 export const getMessagesFromChatRoom = async (chatRoomId: string) => {
-  const messages = await MessageModel.find({ chatRoomId }).sort({ createdAt: 1 });
+  const messages = await MessageModel.find({ chatRoomId })
+    .sort({ createdAt: 1 })
+    .populate('postedByUserId')
+    .populate({
+      path: 'postedByUserId',
+      select: 'username',
+    });
 
   return messages;
 };
