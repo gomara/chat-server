@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 export interface UserDocumentInterface extends Document {
   username: string;
   password: string;
+  socketId: string;
 }
 
 export interface ChatRoomDocumentInterface extends Document {

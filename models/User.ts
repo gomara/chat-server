@@ -12,6 +12,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    socketId: {
+      type: String,
+    },
   },
   { timestamps: true },
 );
