@@ -40,7 +40,7 @@ export const decode = (req, res, next) => {
 
     req.userId = decoded.userId;
 
-    return next();
+    next();
   } catch (error) {
     return res.status(401).json({ success: false, message: error });
   }
