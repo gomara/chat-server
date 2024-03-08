@@ -8,9 +8,15 @@ const MessageSchema = new Schema(
       type: String,
       required: true,
     },
-    user: {
+    postedByUserId: {
       type: String,
       required: true,
+      ref: 'User',
+    },
+    chatRoomId: {
+      type: String,
+      required: true,
+      ref: 'ChatRoom',
     },
   },
   { timestamps: true },
