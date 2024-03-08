@@ -4,6 +4,7 @@ import path from 'path';
 import express from 'express';
 import { Server } from 'socket.io';
 
+import chatRoomRouter from './routes/chatRoom';
 import { dbConnect } from './db/mongodb';
 
 const PORT = process.env.PORT || 3500;
@@ -13,9 +14,12 @@ const serverConnect = async (): Promise<void> => {
   const app = express();
 
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/rooms', chatRoomRouter);
+
   const expressServer = app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
   });
+
   const io = new Server(expressServer, {
     cors: {
       origin:
