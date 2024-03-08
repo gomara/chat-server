@@ -26,6 +26,12 @@ export const getUserById = async (id: string) => {
   return user;
 };
 
+export const getUserBySocketId = async (socketId: string) => {
+  const user = await UserModel.findOne({ socketId });
+
+  return user;
+};
+
 export const validateUserCredentials = async (username: string, password: string) => {
   const user = await UserModel.findOne({ username });
 
@@ -35,4 +41,18 @@ export const validateUserCredentials = async (username: string, password: string
   const isValid = await validatePassword(password, user.password);
 
   return isValid;
+};
+
+export const associateUserToSocket = async (userId: string, socketId: string) => {
+  const user = await UserModel.findById(userId);
+
+  user.socketId = socketId;
+  await user.save();
+};
+
+export const removeSocketIdFromUser = async (userId: string) => {
+  const user = await UserModel.findById(userId);
+
+  user.socketId = '';
+  await user.save();
 };
