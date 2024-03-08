@@ -5,7 +5,9 @@ import express from 'express';
 import { Server } from 'socket.io';
 
 import chatRoomRouter from './routes/chatRoom';
+import authRouter from './routes/auth';
 import { dbConnect } from './db/mongodb';
+import { decode } from './middleware/jwt';
 
 const PORT = process.env.PORT || 3500;
 
@@ -13,8 +15,11 @@ const serverConnect = async (): Promise<void> => {
   await dbConnect();
   const app = express();
 
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use('/rooms', chatRoomRouter);
+  //app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use('/auth', authRouter);
+  app.use('/rooms', decode, chatRoomRouter);
 
   const expressServer = app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
