@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-import path from 'path';
-
 import express from 'express';
 import { Server } from 'socket.io';
 
@@ -8,6 +6,8 @@ import chatRoomRouter from './routes/chatRoom';
 import authRouter from './routes/auth';
 import { dbConnect } from './db/mongodb';
 import { decode } from './middleware/jwt';
+import { getUserChatRoom } from './services/chatRoomService';
+import { handleDisconnect, handleMessage, joinRoom, leaveRoom } from './services/socketService';
 
 const PORT = process.env.PORT || 3500;
 
@@ -15,7 +15,6 @@ const serverConnect = async (): Promise<void> => {
   await dbConnect();
   const app = express();
 
-  //app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use('/auth', authRouter);
@@ -35,20 +34,30 @@ const serverConnect = async (): Promise<void> => {
   });
 
   io.on('connection', (socket) => {
-    console.log(`User ${socket.id} connected`);
-    // Only to the user who connected
-    socket.emit('message', 'Welcome to the chat room');
-    // To all users except the user who connected
-    socket.broadcast.emit('message', `User ${socket.id} connected`);
+    socket.emit('message', 'Welcome to the chat server!');
 
-    // To all users except the user who connected
-    socket.on('disconnect', () => {
-      socket.broadcast.emit('message', `User ${socket.id} disconnected`);
+    socket.on('joinRoom', async ({ roomId, username }) => {
+      //leave previous room if the user was in other
+      const previousRoom = await getUserChatRoom(username);
+      const previousRoomId = previousRoom ? previousRoom._id.toString() : null;
+
+      if (previousRoomId && previousRoomId !== roomId) {
+        await leaveRoom(socket, username, previousRoom, io);
+        await joinRoom(socket, username, roomId);
+      } else if (previousRoom && previousRoomId === roomId) {
+        socket.emit('message', `You are already in the ${roomId} chat room`);
+      } else {
+        await joinRoom(socket, username, roomId);
+      }
     });
 
-    socket.on('message', (data) => {
-      console.log(data);
-      io.emit('message', `${socket.id.substring(0, 5)}: ${data}`);
+    socket.on('message', async ({ username, message, roomId }) => {
+      await handleMessage(io, username, message, roomId);
+    });
+
+    // To all users except the user who connected
+    socket.on('disconnect', async () => {
+      await handleDisconnect(socket);
     });
   });
 };
