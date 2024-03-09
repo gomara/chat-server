@@ -29,3 +29,9 @@ export const generateRandomChatRoomName = (): { name: string } => {
 
   return { name };
 };
+
+export const generateRandomSocketId = (): { socketId: string } => {
+  const socketId = `socket${Math.floor(Math.random() * 100000)}`;
+
+  return { socketId };
+};
