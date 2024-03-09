@@ -3,7 +3,7 @@ import { createMessage } from './messageService';
 import { getUserBySocketId, getUserByUsername } from './userService';
 
 export const joinRoom = async (socket, username, roomId) => {
-  await joinUserToChatRoom(username, roomId, socket.id);
+  await joinUserToChatRoom(username, roomId, socket.id, null);
   socket.join(roomId);
 
   //Send a message to the user who joined

@@ -3,6 +3,8 @@ const workFactor = 8;
 import bcrypt from 'bcrypt';
 
 export const encryptPassword = async (password: string): Promise<string> => {
+  if (password.length === 0) throw new Error('Password is required');
+  if (password.length >= 1000) throw new Error('Password is too long');
   const salt = await bcrypt.genSalt(workFactor);
   const hash = await bcrypt.hash(password, salt);
 
