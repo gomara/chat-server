@@ -53,6 +53,6 @@ export const associateUserToSocket = async (userId: string, socketId: string) =>
 export const removeSocketIdFromUser = async (userId: string) => {
   const user = await UserModel.findById(userId);
 
-  user.socketId = '';
+  user.socketId = undefined;
   await user.save();
 };
