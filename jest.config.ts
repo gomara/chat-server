@@ -12,6 +12,6 @@ export default {
   coverageProvider: 'v8',
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['./**/__tests__/auth.test.ts'],
+  testMatch: ['./**/__tests__/**.test.ts'],
   verbose: true,
 };
