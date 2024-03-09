@@ -49,13 +49,16 @@ export const removeUserFromChatRoom = async (username: string) => {
 export const joinUserToChatRoom = async (
   username: string,
   chatRoomId: string,
-  socketId: string,
+  socketId: string | null,
+  userIdFromReq: string | null,
 ) => {
-  const user = await getUserByUsername(username);
+  const userId = userIdFromReq ? userIdFromReq : (await getUserByUsername(username))._id;
 
-  await associateUserToSocket(user._id, socketId);
+  if (socketId) {
+    await associateUserToSocket(userId, socketId);
+  }
   const chatRoom = await ChatRoomModel.findById(chatRoomId);
 
-  chatRoom.users = Array.from(new Set([...chatRoom.users, user._id]));
+  chatRoom.users = Array.from(new Set([...chatRoom.users, userId]));
   await chatRoom.save();
 };
