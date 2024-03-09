@@ -2,10 +2,15 @@ import { UserModel } from '../../models/User';
 import { UserDocumentInterface } from '../../models/interfaces';
 import { encryptPassword } from '../../utils/password_utils';
 
-import { generateRandomPassword, generateRandomUsername } from './utilities_generator';
+import {
+  generateRandomPassword,
+  generateRandomSocketId,
+  generateRandomUsername,
+} from './utilities_generator';
 
 interface UserGeneratorOptions {
   passwordControlled?: string;
+  associateToSocket: boolean;
 }
 
 export const userGenerator = async (
@@ -16,9 +21,11 @@ export const userGenerator = async (
     props?.passwordControlled != null && props.passwordControlled?.length !== 0
       ? await encryptPassword(props.passwordControlled)
       : await encryptPassword(generateRandomPassword());
+  const socketId = props?.associateToSocket ? generateRandomSocketId().socketId : null;
   const newUser = await UserModel.create({
     username,
     password,
+    socketId,
   });
 
   return newUser;
