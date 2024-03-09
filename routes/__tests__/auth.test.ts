@@ -1,14 +1,6 @@
 import request from 'supertest';
-import express from 'express';
 
-import {
-  ServerInfo,
-  clearDatabase,
-  closeDatabase,
-  dbTestConnect,
-  testServerConnect,
-  testServerStop,
-} from '../../db/dbtest';
+import { ServerInfo, testServerConnect, testServerStop } from '../../db/dbtest';
 
 let serverInfo: ServerInfo | undefined;
 
