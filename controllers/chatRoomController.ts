@@ -42,11 +42,6 @@ export const postMessage = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Message is required' });
     }
 
-    const chatRoom = await getChatRoomById(chatRoomId);
-
-    if (!chatRoom) {
-      return res.status(400).json({ success: false, message: 'Chat room not found' });
-    }
     const userId = req.userId;
 
     try {
