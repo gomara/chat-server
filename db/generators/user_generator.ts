@@ -30,3 +30,19 @@ export const userGenerator = async (
 
   return newUser;
 };
+
+export const userGeneratorFromEnv = async ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}): Promise<UserDocumentInterface> => {
+  const hashedPassword = await encryptPassword(password);
+  const newUser = await UserModel.create({
+    username,
+    password: hashedPassword,
+  });
+
+  return newUser;
+};
