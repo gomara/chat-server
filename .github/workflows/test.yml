@@ -1,0 +1,40 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Run tests
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-20-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install packages
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
