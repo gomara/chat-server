@@ -22,10 +22,6 @@ For the database. I created a docker-compose file to run a MongoDb database. Thi
 pnpm start-local-database
 ```
 
-The first time your run the database, a seed will be created with a user and a chat room.
-The chat room id will be displayed in the console.
-For the user you can set the username and password in the **.env** file (see below).
-
 ### Environment variables
 
 The server uses environment variables to run. You can create a **.env** file in the root of the project with the following variables:
@@ -49,6 +45,9 @@ pnpm dev
 ```
 
 This will start the server in the port **3500**.
+The first time your run the database, a seed will be created with a user and a chat room.
+The chat room id will be displayed in the console.
+For the user you can set the username and password in the **.env** file (see below).
 
 ### Run the tests
 
@@ -157,7 +156,7 @@ localhost:3500
 
 It's possible to test the server using Postman. Your can test the RESTful endpoints and the websocket.
 
-You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**. inside the folder **Postman collections**
+You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**. inside the folder **Postman collections**, make sure to read the **Chat.md** file in the folder for more information.
 
 NOTE: Postman didn't allow me to export the sockets collection, but you can test the sockets with the events described above in the **Socket events** section.
 

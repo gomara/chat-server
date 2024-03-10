@@ -5,11 +5,7 @@ import { getUserBySocketId, getUserByUsername } from './userService';
 export const joinRoom = async (socket, username, roomId) => {
   await joinUserToChatRoom(username, roomId, socket.id, null);
   socket.join(roomId);
-
-  //Send a message to the user who joined
   socket.emit('message', `You have joined the ${roomId} chat room`);
-
-  // To everyone else
   socket.broadcast.to(roomId).emit('message', `${username} has joined the room`);
 };
 
@@ -35,6 +31,6 @@ export const handleDisconnect = async (socket) => {
 
   if (user) {
     await removeUserFromChatRoom(user.username);
+    socket.broadcast.emit('message', `${user.username} disconnected`);
   }
-  socket.broadcast.emit('message', `${user.username} disconnected`);
 };

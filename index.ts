@@ -43,6 +43,7 @@ const serverConnect = async (): Promise<void> => {
 
       if (previousRoomId && previousRoomId !== roomId) {
         await leaveRoom(socket, username, previousRoom, io);
+
         await joinRoom(socket, username, roomId);
       } else if (previousRoom && previousRoomId === roomId) {
         socket.emit('message', `You are already in the ${roomId} chat room`);
