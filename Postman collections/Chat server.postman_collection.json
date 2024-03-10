@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "14ee1cee-94ff-4648-916f-bd6b284fb2aa",
+		"name": "Chat server",
+		"description": "# Chat collection\n\nThis is a simple chat server that supports RESTful and websocket.\n\nThere are two folders in this collection:\n\n## Auth\n\nUrl: `http://localhost:3000/auth`\n\nThis folder contains the requests to authenticate a user and to create a new user.\n\n- The first and the second request are to register a new user.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/auth/register`\n- The third request is to fail the registration of a new user because the user already exists.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/auth/register`\n- The fourth request is to authenticate a user and fail because the credentials are wrong.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/auth/login`\n- The fifth request is to authenticate a user and succeed, this request will return a token that you can use to authenticate the user in the chat requests. So, you need to copy the token and paste it in the `authorization token` with `bearer token type ` header of the chat requests.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/auth/login`\n\n## ChatRooms\n\nUrl: `http://localhost:3000/rooms`\n\nThis folder contains the requests to manage the chat rooms and the messages of the chat rooms.<br>\nHere you can find the requests to get the available chat rooms, to get the messages of a chat room, to join a chat room, to send a message to a chat room and to delete a message from a chat room.<br>\nEvery request in this folder needs the `authorization token` with `bearer token type ` header to authenticate the user.\n\n- The first request is to get the available chat rooms. You can copy the `chatRoomId` of the chat room that you want to join and paste it in the `chatRoomId url` of the other requests.\n\n  - type: `GET`\n    <br> **url**: `http://localhost:3000/rooms`\n\n- The second request is to send a message to a chat room and fail because the user is not in the chat room.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/rooms/:chatRoomId/message`\n- The third request is to join a chat room.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/rooms/:chatRoomId`\n- The fourth request is to send a message to a chat room.\n  - type: `POST`\n    <br> **url**: `http://localhost:3000/rooms/:chatRoomId/message`\n- The fifth request is to delete a message from a chat room. You can copy the `messageId` of the message that you want to delete and paste it in the `messageId url` of the request.\n  - type: `DELETE`\n    <br> **url**: `http://localhost:3000/rooms/:chatRoomId/message/:messageId`\n- The sixth request is to get the messages of a chat room.\n  - type: `GET`\n    <br> **url**: `http://localhost:3000/rooms/:chatRoomId`\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33452497"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register other user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cristobal2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cristobal",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail into register a user because already exist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail into login user with wrongs credentials",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "cyberspeed2023",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log in user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ChatRooms",
+			"item": [
+				{
+					"name": "Fetch all rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3500/rooms",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message and fail because the user is not in the chatRoom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Join to a chatroom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message succesfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message/65ec700d3ae06adf7b82f0fe",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message",
+								"65ec700d3ae06adf7b82f0fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch chat history by chat id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
