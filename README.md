@@ -157,7 +157,7 @@ ws://localhost:3500
 
 It's possible to test the server using Postman. Your can test the RESTful endpoints and the websocket.
 
-You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**.
+You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**. inside the folder **Postman collections**
 
 [Postman workspace]()
 
