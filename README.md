@@ -132,7 +132,7 @@ The available endpoints are the following:
 The server also supports websocket. You can connect to the server using the following URL:
 
 ```bash
-ws://localhost:3500
+localhost:3500
 ```
 
 ### Socket events
@@ -159,7 +159,7 @@ It's possible to test the server using Postman. Your can test the RESTful endpoi
 
 You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**. inside the folder **Postman collections**
 
-[Postman workspace]()
+NOTE: Postman didn't allow me to export the sockets collection, but you can test the sockets with the events described above in the **Socket events** section.
 
 ## TODO
 
