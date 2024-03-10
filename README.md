@@ -165,6 +165,7 @@ NOTE: Postman didn't allow me to export the sockets collection, but you can test
 
 The following is a list of things that I would like to improve in the future:
 
-[] Add more integration and unit test
-[] improve types in the code
-[] improve the documentaion
+- Add more integration and unit test
+- Improve types in the code
+- Improve the documentaion
+- Deploy the server
