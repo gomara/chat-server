@@ -26,8 +26,6 @@ The first time your run the database, a seed will be created with a user and a c
 The chat room id will be displayed in the console.
 For the user you can set the username and password in the **.env** file (see below).
 
-````env
-
 ### Environment variables
 
 The server uses environment variables to run. You can create a **.env** file in the root of the project with the following variables:
@@ -40,7 +38,7 @@ SECRET_KEY="add a secret key here"
 TEST_PORT=4000
 USERNAME="add a username here"
 PASSWORD="add a password here"
-````
+```
 
 ### Run the server
 
@@ -159,7 +157,7 @@ ws://localhost:3500
 
 It's possible to test the server using Postman. Your can test the RESTful endpoints and the websocket.
 
-You can find the postman workspace in the following link:
+You can import the Postman collection for test the server endpoint, the collection is in the file **Chat server.postman_collection.json**.
 
 [Postman workspace]()
 

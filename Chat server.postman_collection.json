@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "14ee1cee-94ff-4648-916f-bd6b284fb2aa",
+		"name": "Chat server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33452497"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register other user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cristobal2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cristobal",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail into register a user because already exist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail into login user with wrongs credentials",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "cyberspeed2023",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log in user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "cyberspeed",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "cyberspeed2024",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ChatRooms",
+			"item": [
+				{
+					"name": "Fetch all rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3500/rooms",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Join to a chatroom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message and fail because the user is not in the chatRoom Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message succesfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "message",
+									"value": "buenas",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737/message/65ec700d3ae06adf7b82f0fe",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737",
+								"message",
+								"65ec700d3ae06adf7b82f0fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch chat history by chat id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVhZWM0MTFhMDZjNmRjNjY3Zjc3MjkiLCJpYXQiOjE3MDk4OTQ3NTl9.J7KqA-5Bc5gBtfQRxaxPdSyxDjojFQat8LUipLFcAJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3500/rooms/65e9fa490456e2ef00964737",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"rooms",
+								"65e9fa490456e2ef00964737"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
