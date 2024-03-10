@@ -161,7 +161,7 @@ It's possible to test the server using Postman. Your can test the RESTful endpoi
 
 You can find the postman workspace in the following link:
 
-[Postman workspace](https://www.getpostman.com/collections/3e3e3e3e3e3e3e3e3e3e)
+[Postman workspace]()
 
 ## TODO
 
@@ -170,32 +170,3 @@ The following is a list of things that I would like to improve in the future:
 [] Add more integration and unit test
 [] improve types in the code
 [] improve the documentaion
-
-[] create a base User with env vars and display it in the console
-[] create a base chat room with env vars and display it in the console
-
-## Project features
-
-### Mandatory:
-
-- User authentication with basic username/password login. The credentials can be hardcoded.
-- Creation of a single chat room upon server startup. No need to create multiple rooms.
-- Persistent storage of chat messages in a Database.
-- Sending and receiving messages in the chat room. The client must be able to fetch the room messages
-- RESTful endpoints for message sending, and message retrieval.
-- Unit testing
-
-### Bonus:
-
-- WebSocket support for real-time chat communication instead of REST API.
-- Deletion of messages by clients.
-- CI/CD skeleton
-- Server scalability
-
-## How to submit your work
-
-- Start by creating a new Git repository on a platform like GitHub, GitLab, or Bitbucket (all the code is your IP)
-- Create README.md for the project with the setup instruction
-- The server must be able to run and tested based on the README instructions
-- Upload the Postman workspace
-- Share the public git repository URL
