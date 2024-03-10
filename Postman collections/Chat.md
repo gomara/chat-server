@@ -1,6 +1,7 @@
 # Chat collection
 
 This is a simple chat server that supports RESTful and websocket.
+Make sure to replace the `:chatRoomId`, `:messageId` in the url of the requests with the `chatRoomId` and `messageId` that you want to use and also replace the `authorization token` in the header of the requests with the token that you get from the login request.
 
 There are two folders in this collection:
 
